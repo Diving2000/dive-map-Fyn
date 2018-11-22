@@ -1474,11 +1474,11 @@ Accommodation in deluxe cabins with a full range of conveniences.</p>';
 
 		<script src="Resources/js/fancybox/jquery.fancybox.pack.js"></script> <!-- Fancybox -->
 
-		<script src="svgpan.js"></script> <!-- https://github.com/ariutta/svg-pan-zoom -->
-		<script src="hammer.js"></script> <!-- Touch support -->
-		
+		<!-- <script src="svgpan.js"></script> <!-- https://github.com/ariutta/svg-pan-zoom --> -->
+		<!-- <script src="hammer.js"></script> <!-- Touch support --> -->
+
 		<!-- CUSTOM JAVASCRIPT -->
-		<script src="script.js"></script>
+		<script src="/Resources/js/scripts/scripts.js"></script>
 		<script src="Resources/js/filter-tags.js"></script>
 		<script>
 

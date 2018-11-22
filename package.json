@@ -1,0 +1,25 @@
+{
+  "name": "dive-map-fyn",
+  "version": "1.0.0",
+  "description": "An interactive Dive Map",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Diving2000/dive-map-Fyn.git"
+  },
+  "author": "Katrine-Marie Burmeister",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Diving2000/dive-map-Fyn/issues"
+  },
+  "homepage": "https://github.com/Diving2000/dive-map-Fyn#readme",
+  "devDependencies": {
+    "gulp": "^3.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify": "^3.0.1"
+  }
+}

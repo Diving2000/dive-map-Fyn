@@ -1,16 +1,16 @@
 $(function(){
-	
+
 	/* ==================== Cross-browser compatible WIDTH TEST (for RWD) ==================== */
 	function getWidth() {
 		if (self.innerHeight) {return self.innerWidth;}
 		if (document.documentElement && document.documentElement.clientWidth) {return document.documentElement.clientWidth;}
 		if (document.body) {return document.body.clientWidth;}
 	}
-	
-	
+
+
 	/* ==================== PAN-ZOOM INITIALIZATION ==================== */
 	var svgElement = document.querySelector('#Map');
-	
+
 	// Custom event handler to enable pinch/zoom and panning on touch
 	var eventsHandler;
   eventsHandler = {
@@ -66,10 +66,10 @@ $(function(){
         this.hammer.destroy();
       }
   }
-	
+
 	var winWidth = $(window).width();
   var winHeight = $(window).height();
-	
+
 	var checkPosition = function(x, y){
     var bBox = svgElement.getBBox();
     var winWidth = $(window).width();
@@ -126,8 +126,8 @@ $(function(){
       checkPosition(pan.x, pan.y);
     }
 	});
-	
-	
+
+
 	// Custom controls
 	document.getElementById('zoom-in').addEventListener('click', function(ev){
   	ev.preventDefault();
@@ -141,12 +141,12 @@ $(function(){
 		ev.preventDefault();
 		panZoom.resetZoom();
 	});
-	
-	
+
+
 	/* ==================== HOVER TRIGGER - small infoboxes ==================== */
 	// Hide all
 	$('g[id^="m-"]').hide();
-	
+
 	// Show on hover
 	$('g[id^="c-"]').on("mouseenter", function(){
 		var id = this.id;
@@ -155,32 +155,32 @@ $(function(){
 	$('g[id^="c-"]').on("mouseleave", function(){
 		$('g[id^="m-"]').fadeOut("fast");
 	});
-	
-	
+
+
 	/* ==================== CLICK TRIGGER - large infoboxes (only accommodation) ==================== */
 	$('rect[id^="p-"]').on("click tap touchstart", function(){
-		
+
 		$(".accommodation").removeClass("fadeOut");
 		$(".accommodation").addClass("fadeIn");
-		
+
 		var identifier = this.id;
-		
+
 		$(".accommodation > div." + identifier + "").removeClass("fadeOut");
 		$(".accommodation > div." + identifier + "").addClass("fadeIn");
-		
+
 		$('body').css({'height':'100vh', 'overflow-y':'hidden'});
-		
+
 	});
-	
-	
+
+
 	/* ==================== CLICK TRIGGER - closing large infoboxes ==================== */
-	
+
 	// If DOM was modified (AJAX)
 	$(".modals").bind("DOMSubtreeModified", function() {
 		$(".fancybox").fancybox();
-				
+
 		$('.close').on("click", function(){
-		
+
 			//fadeOut given modal
 			$(".modal").removeClass("fadeIn");
 			$(".modal").addClass("fadeOut");
@@ -199,10 +199,10 @@ $(function(){
 
 		});
 	});
-	
+
 	// If DOM wasn't modified
 	$('.close').on("click", function(){
-		
+
 		//fadeOut given modal
 		$(".modal, .accommodation > div").removeClass("fadeIn");
 		$(".modal, .accommodation > div").addClass("fadeOut");
@@ -222,24 +222,24 @@ $(function(){
 		$(".modals").html('<p class="close" title="Close"></p>');
 
 	});
-	
-	
+
+
 	/* ==================== Click toggle for 'Map Usage' and 'Icon Key' boxes ==================== */
 	$('.fade ul').hide();
 	$('.fade h2').append('<span class="fa fa-chevron-down"></span>');
-	
+
 	$('.fade h2').on('click', function(){
 		$(this).parent().find('h2 span').toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
 		$(this).parent().find('ul').slideToggle();
 	});
-	
-	
+
+
 	/* ==================== Collapsible sidebar (left) ==================== */
-	
+
 	// creates mobile navigation
 	function mobileNav(){
 		$('.leftSidebar').addClass('mobile-nav');
-			
+
 		// if buttons with a class of show-nav and hide-nav don't exist, add them
 		var showNav = $('.wrapper').children('button.show-nav');
 		if(showNav.length === 0){
@@ -250,12 +250,12 @@ $(function(){
 			$('.leftSidebar').prepend('<button class="hide-nav">Close</button>');
 		}
 	}
-	
-	// if browser window is smaller than 960px and no resize event has fired, 
+
+	// if browser window is smaller than 960px and no resize event has fired,
 	// meaning that the browser loads in a small window
 	if(getWidth() <= 960){
 		mobileNav();
-		
+
 		$('button.show-nav').on('click', function(){
 			$('.leftSidebar').addClass('expanded');
 			$('body').css({'height': '100vh', 'overflow-y':'hidden'});
@@ -265,12 +265,12 @@ $(function(){
 			$('body').css({'height': '100vh', 'overflow-y':'hidden'});
 		});
 	}
-	
+
 	// test if window has been resized
 	$(window).resize(function() {
 		if(getWidth() <= 960){
 			mobileNav();
-			
+
 			$('button.show-nav').on('click', function(){
 				$('.leftSidebar').addClass('expanded');
 				$('body').css({'height': '100vh', 'overflow-y':'hidden'});
@@ -279,7 +279,7 @@ $(function(){
 				$('.leftSidebar').removeClass('expanded');
 				$('body').css({'height': '100vh', 'overflow-y':'hidden'});
 			});
-			
+
 		}else {
 			$('.leftSidebar').removeClass('mobile-nav');
 			$('.leftSidebar').removeClass('expanded');
@@ -287,8 +287,8 @@ $(function(){
 			$('button.hide-nav').remove();
 		}
 	});
-	
-	
+
+
 	/* ==================== Prevent map from collapsing in Edge ==================== */
 	var isIE = /*@cc_on!@*/false || !!document.documentMode;
 	var isEdge = !isIE && !!window.StyleMedia;
@@ -296,9 +296,9 @@ $(function(){
 	if(isEdge === true){
 		$('svg').css({'height': '60vw'});
 	}
-	
-	
+
+
 	/* ==================== Initialize plugins ==================== */
 	$(".fancybox").fancybox();
-			
+
 });
